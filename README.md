@@ -10,3 +10,7 @@ brew install --cask bloomrpc
 <br>
 
 ![bloom-rpc.png](bloom-rpc.png)
+
+<br>
+
+![bloom-rpc-2.png](bloom-rpc-2.png)

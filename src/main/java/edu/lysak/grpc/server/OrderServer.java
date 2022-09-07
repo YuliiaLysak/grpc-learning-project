@@ -1,7 +1,6 @@
 package edu.lysak.grpc.server;
 
 import edu.lysak.grpc.service.OrderServiceImpl;
-import edu.lysak.grpc.service.UserServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
@@ -10,25 +9,24 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserServer {
+public class OrderServer {
 
-    private static final Logger logger = Logger.getLogger(UserServer.class.getName());
+    private static final Logger logger = Logger.getLogger(OrderServer.class.getName());
     private Server server;
 
     public void startServer() {
-        int port = 50051;
+        int port = 50052;
         try {
             server = ServerBuilder.forPort(port)
-                    .addService(new UserServiceImpl())
                     .addService(new OrderServiceImpl())
                     .build()
                     .start();
-            logger.info("Server started on port " + port);
+            logger.info("Order Server started on port " + port);
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 logger.info("Clean server shutdown in case JVM was shutdown");
                 try {
-                    UserServer.this.stopServer();
+                    OrderServer.this.stopServer();
                 } catch (InterruptedException exception) {
                     logger.log(Level.SEVERE, "Server shutdown interrupted", exception);
                 }
@@ -51,8 +49,8 @@ public class UserServer {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        UserServer userServer = new UserServer();
-        userServer.startServer();
-        userServer.blockUntilShutdown();
+        OrderServer orderServer = new OrderServer();
+        orderServer.startServer();
+        orderServer.blockUntilShutdown();
     }
 }

@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package edu.lysak.shopping.stubs.user;
+package edu.lysak.grpc.stubs.user;
 
-option java_package = "edu.lysak.shopping.stubs.user";
+option java_package = "edu.lysak.grpc.stubs.user";
 option java_multiple_files = true;
 
 service UserService {
@@ -19,6 +19,7 @@ message UserResponse {
   string name = 3;
   int32 age = 4;
   Gender gender = 5;
+  int32 no_of_orders = 6;
 }
 
 enum Gender {
